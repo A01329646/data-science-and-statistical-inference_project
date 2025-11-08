@@ -1,53 +1,201 @@
-# Image Converter
+# Gender Classification Using Linear Discriminant Analysis
 
-A Python script to convert images to smaller resolutions and black & white format.
+A comprehensive statistical analysis project for gender classification from face images using Linear Discriminant Analysis (LDA). This project demonstrates the application of probability and statistics theory for supervised classification, comparing unsupervised (PCA) vs supervised (LDA) approaches.
 
-## Features
+## 📊 Project Overview
 
-- Converts all images in a specified folder to grayscale (black & white) by default
-- Optional flag to keep images in color
-- Resizes images to custom dimensions (optional - can keep original resolution)
-- Multiple resize modes to handle aspect ratio:
-  - **fit**: Maintain aspect ratio, resize to fit within dimensions (default)
-  - **contain**: Maintain aspect ratio, fit inside dimensions with padding
-  - **stretch**: Ignore aspect ratio, stretch to exact dimensions
-  - **cover**: Maintain aspect ratio, crop to fill dimensions
-- Supports multiple image formats: JPG, PNG, BMP, GIF, TIFF, WEBP
-- Saves converted images in the same folder with customizable prefix
-- Default prefix is "converted_", can be customized via `--prefix` parameter
-- Automatically skips already processed files to avoid reprocessing
+This repository contains a complete pipeline for gender classification using classical statistical methods:
 
-## Installation
+1. **Dataset Preparation**: Face image dataset with train/validation splits
+2. **Image Preprocessing**: Batch image conversion utility for standardization
+3. **PCA Analysis**: Initial unsupervised dimensionality reduction attempt
+4. **LDA Analysis**: Fisher's Linear Discriminant for supervised classification
+5. **Statistical Testing**: Hypothesis testing, t-tests, confidence intervals
+6. **Comprehensive Documentation**: Theory, formulas, and visual guides
 
-1. Install Python dependencies:
-```bash
+### Key Distinction: Statistical Approach, Not Machine Learning
+
+This project emphasizes **classical statistical inference** rather than modern machine learning:
+- Uses Fisher's Linear Discriminant (1936)
+- Focuses on hypothesis testing and p-values
+- Provides interpretable results with statistical significance
+- Perfect for probability and statistics coursework
+
+---
+
+## 🎯 Main Features
+
+### Statistical Classification Pipeline
+- **Fisher's Linear Discriminant Analysis** for supervised classification
+- **Statistical significance testing** (two-sample t-test, p-values)
+- **Bayes' optimal decision rule** for threshold calculation
+- **Confusion matrix analysis** with sensitivity/specificity metrics
+- **Effect size calculation** (Cohen's d)
+- **Confidence intervals** for accuracy estimates
+
+### Image Processing Utilities
+- Batch image converter with multiple resize modes
+- Grayscale or color output options
+- Customizable output file naming
+- Support for multiple image formats (JPG, PNG, BMP, GIF, TIFF, WEBP)
+
+### Visualization & Reporting
+- Distribution comparison plots (train vs validation)
+- Boxplot analysis for class separation
+- Misclassification scatter plots
+- Automated text report generation
+- Model persistence for reproducibility
+
+---
+
+## 📁 Repository Structure
+
+```
+├── dataset/
+│   ├── train/          # Training images (labeled by filename)
+│   └── validation/     # Validation images (labeled by filename)
+├── models/             # Saved LDA models and scalers
+├── lda_gender_classification.py    # Main LDA analysis script
+├── compare_pca_lda.py              # PCA vs LDA comparison
+├── pca_dataset.py                  # Original PCA implementation
+├── image_converter.py              # Image preprocessing utility
+├── requirements.txt                # Python dependencies
+├── 00_DOCUMENTATION_INDEX.md       # Master documentation guide
+├── LDA_THEORY_EXPLAINED.md         # Complete statistical theory
+├── LDA_QUICK_REFERENCE.md          # Formula quick reference
+├── LDA_VISUAL_GUIDE.md             # Visual intuition guide
+└── PCA_vs_LDA_Guide.md             # Comparison and recommendations
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+
+```powershell
+# Clone the repository
+git clone <repository-url>
+cd data-science-and-statistical-inference_project
+
+# Create and activate virtual environment (recommended)
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-## Usage
+### 2. Prepare Dataset
 
-### Basic Usage (with resizing)
-```bash
-python image_converter.py --folder <folder_name> --width <width> --height <height>
+Organize your face images in the following structure:
+```
+dataset/
+├── train/
+│   ├── male_001.jpg
+│   ├── male_002.jpg
+│   ├── female_001.jpg
+│   └── female_002.jpg
+└── validation/
+    ├── male_101.jpg
+    └── female_101.jpg
 ```
 
-### Convert to B&W Without Resizing (keep original resolution)
-```bash
-python image_converter.py --folder <folder_name>
+**Important**: Filenames must start with "male" or "female" for automatic labeling.
+
+### 3. Run LDA Analysis
+
+```powershell
+# Option 1: Using activated venv
+python lda_gender_classification.py
+
+# Option 2: Direct venv execution
+.\venv\Scripts\python.exe lda_gender_classification.py
 ```
 
-### With Resize Mode
-```bash
-python image_converter.py --folder <folder_name> --width <width> --height <height> --mode <mode>
+### 4. Compare PCA vs LDA (Optional)
+
+```powershell
+python compare_pca_lda.py
 ```
 
-### Keep Images in Color
-```bash
-python image_converter.py --folder <folder_name> --width <width> --height <height> --color
+---
+
+## 📊 Main Scripts
+
+### `lda_gender_classification.py` - Complete LDA Analysis
+
+**What it does:**
+- Loads training and validation datasets
+- Standardizes features using training set statistics
+- Fits Fisher's Linear Discriminant on training data
+- Performs statistical significance testing (t-test)
+- Calculates optimal classification threshold
+- Generates confusion matrix and performance metrics
+- Creates 3 visualization plots
+- Saves detailed text report and model
+
+**Outputs:**
+- `lda_gender_distribution.png` - Distribution comparison
+- `lda_boxplot_comparison.png` - Boxplot analysis
+- `lda_classification_results.png` - Misclassification visualization
+- `lda_analysis_report.txt` - Detailed statistical report
+- `models/lda_model.pkl` - Saved LDA model
+
+**Usage:**
+```powershell
+python lda_gender_classification.py
 ```
 
-### Keep Original Resolution and Color
-```bash
+---
+
+### `compare_pca_lda.py` - Visual Comparison
+
+**What it does:**
+- Runs both PCA and LDA on the same dataset
+- Compares separation quality using t-tests
+- Creates side-by-side visualization
+- Shows why LDA works better for classification
+
+**Outputs:**
+- `pca_vs_lda_comparison.png` - 2×2 comparison plot
+- Terminal summary of both methods
+
+**Usage:**
+```powershell
+python compare_pca_lda.py
+```
+
+---
+
+### `image_converter.py` - Image Preprocessing Utility
+
+**What it does:**
+- Batch converts images to standard format
+- Resizes to custom dimensions with aspect ratio handling
+- Converts to grayscale or keeps in color
+- Useful for preparing datasets
+
+**Features:**
+- Multiple resize modes: fit, contain, stretch, cover
+- Optional grayscale conversion (default) or color preservation
+- Customizable output filename prefix
+- Automatic skip of already processed files
+
+**Usage:**
+
+Basic conversion to grayscale with resizing:
+```powershell
+python image_converter.py --folder images --width 800 --height 600
+```
+
+Keep color and original resolution:
+```powershell
+python image_converter.py --folder images --color
+```
+
+Custom prefix with specific mode:
+```powershell
 python image_converter.py --folder <folder_name> --color
 ```
 
@@ -80,85 +228,261 @@ python image_converter.py --folder wallpapers --width 1024 --height 768 --mode s
 
 ### Example 5: Keep images in color (no black & white conversion)
 ```bash
-python image_converter.py --folder vacation --width 1920 --height 1080 --color
+python image_converter.py --folder portraits --width 800 --height 800 --mode cover --prefix thumbnail
 ```
 
-### Example 6: Color images with cover mode
-```bash
-python image_converter.py --folder portraits --width 800 --height 800 --mode cover --color
+See full documentation at the end of this README for all image converter options.
+
+---
+
+## 📚 Documentation
+
+This project includes extensive documentation for understanding the theory and implementation:
+
+### **[00_DOCUMENTATION_INDEX.md](00_DOCUMENTATION_INDEX.md)** - Start Here!
+Master guide with navigation to all documentation, reading order recommendations, and project overview.
+
+### **[LDA_THEORY_EXPLAINED.md](LDA_THEORY_EXPLAINED.md)** - Complete Theory
+In-depth explanation of:
+- Fisher's Linear Discriminant mathematical derivation
+- Probability and statistics foundations
+- Statistical tests (t-test, confidence intervals, hypothesis testing)
+- Multivariate normal distributions
+- Bayes' decision theory
+- Assumptions and when they're violated
+
+### **[LDA_QUICK_REFERENCE.md](LDA_QUICK_REFERENCE.md)** - Quick Lookup
+- All important formulas on one page
+- p-value and accuracy interpretation tables
+- Code-to-theory mapping
+- Example calculations
+- Report writing checklist
+
+### **[LDA_VISUAL_GUIDE.md](LDA_VISUAL_GUIDE.md)** - Visual Intuition
+- ASCII art diagrams showing how LDA works
+- Step-by-step visual explanations
+- Before/after comparisons
+- Distribution plot interpretations
+- Common error patterns
+
+### **[PCA_vs_LDA_Guide.md](PCA_vs_LDA_Guide.md)** - Comparison
+- Why PCA failed for classification
+- Why LDA is better for this project
+- Supervised vs unsupervised comparison
+- Project recommendations
+
+---
+
+## 🎓 Key Concepts & Theory
+
+### Fisher's Linear Discriminant
+
+LDA finds a projection vector **w** that maximizes the ratio:
+
+```
+J(w) = (Between-Class Variance) / (Within-Class Variance)
+     = (w^T S_B w) / (w^T S_W w)
 ```
 
-### Example 7: Convert to black & white only (no resizing)
-```bash
-python image_converter.py --folder documents
+where:
+- **S_B** = Between-class scatter matrix (separation of means)
+- **S_W** = Within-class scatter matrix (spread within classes)
+
+**Optimal solution:**
+```
+w = S_W^(-1) (μ_male - μ_female)
 ```
 
-### Example 8: Keep original resolution and color (no conversion)
-```bash
-python image_converter.py --folder originals --color
+### Statistical Significance Testing
+
+**Two-sample t-test** to verify classes are different:
+
+```
+H₀: μ_male = μ_female (null hypothesis)
+H₁: μ_male ≠ μ_female (alternative hypothesis)
 ```
 
-### Example 9: Custom prefix for output files
-```bash
-python image_converter.py --folder images --width 800 --height 600 --prefix thumbnail
+**Interpretation:**
+- p < 0.001: ★★★ Extremely significant separation
+- p < 0.01: ★★☆ Very significant
+- p < 0.05: ★☆☆ Significant (conventional threshold)
+- p ≥ 0.05: ☆☆☆ Not statistically significant
+
+### Decision Rule
+
+**Optimal threshold** (assuming equal priors):
 ```
-This will create files like: `thumbnail_photo1.png`, `thumbnail_photo2.png`, etc.
-
-### Example 10: Convert to B&W with custom prefix
-```bash
-python image_converter.py --folder documents --prefix bw
-```
-This will create files like: `bw_document1.png`, `bw_document2.png`, etc.
-
-## Resize Modes Explained
-
-- **fit**: The image is resized to fit within the specified dimensions while maintaining its aspect ratio. The resulting image may be smaller than the target dimensions.
-
-- **contain**: The image is resized to fit within the specified dimensions while maintaining its aspect ratio, then centered on a white background to match the exact target dimensions.
-
-- **stretch**: The image is resized to exactly match the target dimensions, ignoring the original aspect ratio. This may distort the image.
-
-- **cover**: The image is resized to fill the target dimensions while maintaining its aspect ratio. Parts of the image may be cropped to achieve this.
-
-## Folder Structure
-
-The script expects:
-- A folder with images at the same level as the script
-- Converted images are saved in the same folder with a prefix
-
-Example:
-```
-project/
-├── image_converter.py
-├── images/
-│   ├── photo1.jpg
-│   ├── photo2.png
-│   ├── converted_photo1.png    (created after conversion)
-│   └── converted_photo2.png    (created after conversion)
+threshold = (μ_male + μ_female) / 2
 ```
 
-With custom prefix (e.g., `--prefix thumbnail`):
+**Classification:**
 ```
-project/
-├── image_converter.py
-├── images/
-│   ├── photo1.jpg
-│   ├── photo2.png
-│   ├── thumbnail_photo1.png    (created after conversion)
-│   └── thumbnail_photo2.png    (created after conversion)
+If LD1_score < threshold → Male
+If LD1_score ≥ threshold → Female
 ```
 
-## Output
+---
 
-- All converted images are saved as PNG files in the same folder
-- Original filenames are preserved with a customizable prefix (default: `converted_`)
-- Files with the prefix are automatically excluded to avoid reprocessing
-- Progress is displayed in the console
-- Summary shows successful and failed conversions
+## 📈 Expected Results
 
-## Important Notes
+### Good Separation Scenario
+- **p-value**: < 0.05 (statistically significant)
+- **Accuracy**: > 70%
+- **Visualization**: Clear separation in distribution plots
+- **Conclusion**: Gender can be classified from face images
 
-- **Prefix Format**: The prefix is added with an underscore separator (e.g., `converted_photo.png`)
-- **Reprocessing Protection**: Files that already have the prefix are automatically skipped
-- **Same Folder Output**: Converted images are saved in the same folder as the originals
-- **PNG Format**: All output images are saved as PNG regardless of the input format
+### Poor Separation Scenario
+- **p-value**: > 0.05 (not significant)
+- **Accuracy**: ≈ 50% (random guessing)
+- **Visualization**: Large overlap in distributions
+- **Conclusion**: Gender cannot be reliably classified from raw pixels
+
+**Note**: Either result is valid for a statistics project! Poor separation means the features (raw pixels) don't contain enough information, which is an interesting finding to discuss.
+
+---
+
+## 🔬 PCA vs LDA Comparison
+
+| Aspect | PCA | LDA |
+|--------|-----|-----|
+| **Type** | Unsupervised | Supervised |
+| **Uses labels?** | ❌ No | ✅ Yes |
+| **Goal** | Maximize variance | Maximize class separation |
+| **Best for** | Visualization, noise reduction | Classification |
+| **# Components** | Up to n features | Up to k-1 classes |
+| **For 2 classes** | Many components | Exactly 1 component |
+
+**Why LDA for this project:**
+- Uses gender labels to find discriminative direction
+- Maximizes separation between males and females
+- Statistical foundation (Fisher's discriminant)
+- Perfect for probability & statistics course
+
+---
+
+## 📊 Performance Metrics
+
+The analysis reports multiple metrics:
+
+- **Accuracy**: Overall correct classification rate
+- **Sensitivity**: True positive rate (male classification rate)
+- **Specificity**: True negative rate (female classification rate)
+- **Confusion Matrix**: Breakdown of correct/incorrect predictions
+- **Confidence Intervals**: Statistical uncertainty estimates
+- **Effect Size (Cohen's d)**: Magnitude of separation
+
+---
+
+## 🛠️ Requirements
+
+```
+Pillow>=10.0.0           # Image processing
+scikit-learn>=1.3.0      # PCA and LDA
+numpy>=1.24.0            # Numerical operations
+matplotlib>=3.7.0        # Plotting
+joblib>=1.3.0            # Model persistence
+scipy>=1.11.0            # Statistical tests
+```
+
+---
+
+## 💡 Tips for Your Project Report
+
+1. **Introduction**: Explain why LDA over PCA (supervised vs unsupervised)
+2. **Theory**: Derive Fisher's discriminant criterion
+3. **Methodology**: Describe data preparation and standardization
+4. **Results**: Show plots and report statistical tests
+5. **Discussion**: Interpret p-values and accuracy
+6. **Limitations**: Discuss assumptions and potential violations
+7. **Conclusion**: Summarize statistical findings
+
+**Key Point**: This is a statistical analysis, not machine learning! Focus on:
+- Hypothesis testing
+- Statistical significance
+- Probability distributions
+- Decision theory
+
+---
+
+## 🎯 For Different Learning Styles
+
+### Visual Learners 👁️
+1. Run `compare_pca_lda.py` first
+2. Look at generated plots
+3. Read `LDA_VISUAL_GUIDE.md`
+
+### Theory-Focused 🔢
+1. Read `LDA_THEORY_EXPLAINED.md`
+2. Work through mathematical derivations
+3. Run code to verify theory
+
+### Hands-On 💻
+1. Run `lda_gender_classification.py`
+2. Examine outputs
+3. Read documentation to understand results
+
+---
+
+## 🔧 Troubleshooting
+
+### Import Errors
+```powershell
+# Make sure virtual environment is activated
+.\venv\Scripts\Activate.ps1
+
+# Reinstall dependencies
+pip install -r requirements.txt
+```
+
+### No Images Found
+- Check dataset structure: `dataset/train/` and `dataset/validation/`
+- Verify filenames start with "male" or "female"
+- Check image formats are supported
+
+### Poor Results (p > 0.05, accuracy ≈ 50%)
+This is a valid finding! It means:
+- Raw pixels don't contain enough gender information
+- Would need better features (face landmarks, ratios, etc.)
+- Makes for interesting discussion in report
+
+---
+
+## 📖 Additional Resources
+
+- **Fisher's Original Paper**: Fisher, R. A. (1936). "The Use of Multiple Measurements in Taxonomic Problems"
+- **Textbook**: Hastie, Tibshirani & Friedman - "The Elements of Statistical Learning"
+- **Online**: StatQuest YouTube videos on LDA
+
+---
+
+## 🙏 Acknowledgments
+
+This project demonstrates classical statistical methods for gender classification:
+- Fisher's Linear Discriminant (1936)
+- Statistical hypothesis testing
+- Probability theory and Bayes' rule
+- Suitable for academic coursework in probability and statistics
+
+---
+
+## 📄 License
+
+This project is for educational purposes as part of a probability and statistics course.
+
+---
+
+# Appendix: Image Converter Detailed Usage
+
+## Image Converter Features
+
+- Batch converts images to standard format
+- Multiple resize modes (fit, contain, stretch, cover)
+- Optional grayscale conversion or color preservation
+- Customizable output filename prefix
+- Supports JPG, PNG, BMP, GIF, TIFF, WEBP
+
+## Usage Examples
+
+### Basic Conversion
+```powershell
+python image_converter.py --folder images --width 800 --height 600
