@@ -256,7 +256,6 @@ In-depth explanation of:
 - p-value and accuracy interpretation tables
 - Code-to-theory mapping
 - Example calculations
-- Report writing checklist
 
 ### **[LDA_VISUAL_GUIDE.md](LDA_VISUAL_GUIDE.md)** - Visual Intuition
 - ASCII art diagrams showing how LDA works
@@ -337,7 +336,6 @@ If LD1_score ≥ threshold → Female
 - **Visualization**: Large overlap in distributions
 - **Conclusion**: Gender cannot be reliably classified from raw pixels
 
-**Note**: Either result is valid for a statistics project! Poor separation means the features (raw pixels) don't contain enough information, which is an interesting finding to discuss.
 
 ---
 
@@ -383,93 +381,6 @@ matplotlib>=3.7.0        # Plotting
 joblib>=1.3.0            # Model persistence
 scipy>=1.11.0            # Statistical tests
 ```
-
----
-
-## 💡 Tips for Your Project Report
-
-1. **Introduction**: Explain why LDA over PCA (supervised vs unsupervised)
-2. **Theory**: Derive Fisher's discriminant criterion
-3. **Methodology**: Describe data preparation and standardization
-4. **Results**: Show plots and report statistical tests
-5. **Discussion**: Interpret p-values and accuracy
-6. **Limitations**: Discuss assumptions and potential violations
-7. **Conclusion**: Summarize statistical findings
-
-**Key Point**: This is a statistical analysis, not machine learning! Focus on:
-- Hypothesis testing
-- Statistical significance
-- Probability distributions
-- Decision theory
-
----
-
-## 🎯 For Different Learning Styles
-
-### Visual Learners 👁️
-1. Run `compare_pca_lda.py` first
-2. Look at generated plots
-3. Read `LDA_VISUAL_GUIDE.md`
-
-### Theory-Focused 🔢
-1. Read `LDA_THEORY_EXPLAINED.md`
-2. Work through mathematical derivations
-3. Run code to verify theory
-
-### Hands-On 💻
-1. Run `lda_gender_classification.py`
-2. Examine outputs
-3. Read documentation to understand results
-
----
-
-## 🔧 Troubleshooting
-
-### Import Errors
-```powershell
-# Make sure virtual environment is activated
-.\venv\Scripts\Activate.ps1
-
-# Reinstall dependencies
-pip install -r requirements.txt
-```
-
-### No Images Found
-- Check dataset structure: `dataset/train/` and `dataset/validation/`
-- Verify filenames start with "male" or "female"
-- Check image formats are supported
-
-### Poor Results (p > 0.05, accuracy ≈ 50%)
-This is a valid finding! It means:
-- Raw pixels don't contain enough gender information
-- Would need better features (face landmarks, ratios, etc.)
-- Makes for interesting discussion in report
-
----
-
-## 📖 Additional Resources
-
-- **Fisher's Original Paper**: Fisher, R. A. (1936). "The Use of Multiple Measurements in Taxonomic Problems"
-- **Textbook**: Hastie, Tibshirani & Friedman - "The Elements of Statistical Learning"
-- **Online**: StatQuest YouTube videos on LDA
-
----
-
-## 🙏 Acknowledgments
-
-This project demonstrates classical statistical methods for gender classification:
-- Fisher's Linear Discriminant (1936)
-- Statistical hypothesis testing
-- Probability theory and Bayes' rule
-- Suitable for academic coursework in probability and statistics
-
----
-
-## 📄 License
-
-This project is for educational purposes as part of a probability and statistics course.
-
----
 
 # Appendix: Image Converter Detailed Usage
 

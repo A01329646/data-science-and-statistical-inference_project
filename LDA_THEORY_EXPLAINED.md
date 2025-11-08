@@ -11,7 +11,7 @@
 
 ## Introduction
 
-This document explains the **probability and statistics theory** behind each step of the LDA gender classification code. Linear Discriminant Analysis is a **supervised classification method** rooted in classical statistics, not machine learning.
+This document explains the **probability and statistics theory** behind each step of the LDA gender classification code. Linear Discriminant Analysis is a **supervised classification method** rooted in classical statistics.
 
 ### Key Difference: Supervised vs Unsupervised
 
@@ -607,57 +607,6 @@ OVL = ∫ min(f₁(x), f₂(x)) dx
 ```
 
 where f₁, f₂ are the probability density functions.
-
----
-
-## Practical Recommendations
-
-### 1. For Your Report
-
-**Structure**:
-1. **Introduction**: Explain classification problem and why LDA
-2. **Theory**: Fisher's discriminant, statistical assumptions
-3. **Methodology**: Standardization, train/validation split
-4. **Results**: Show plots, report p-values and accuracy
-5. **Statistical Tests**: t-test results, confidence intervals
-6. **Discussion**: Interpret findings, discuss limitations
-7. **Conclusion**: Summarize what was learned
-
-### 2. Key Points to Include
-
-✅ **LDA vs PCA**: Supervised vs unsupervised
-✅ **Fisher's criterion**: Between-class vs within-class variance
-✅ **Statistical significance**: p-value interpretation
-✅ **Generalization**: Why validation set matters
-✅ **Assumptions**: What LDA assumes and what happens if violated
-✅ **Limitations**: Discuss why classification might fail
-
-### 3. Advanced Topics (Optional)
-
-- **ROC Curve**: Plot sensitivity vs (1 - specificity)
-- **Cross-validation**: k-fold CV for more robust estimates
-- **Regularization**: Shrinkage LDA for high-dimensional data
-- **Quadratic DA**: When equal covariance assumption fails
-- **Multiclass LDA**: Extension to more than 2 classes
-
----
-
-## Summary
-
-**LDA is a classical statistical method** for classification based on:
-
-1. **Probability Theory**: Assumes multivariate normal distributions
-2. **Optimization**: Maximizes Fisher's discriminant ratio
-3. **Inference**: Uses t-tests to verify statistical significance
-4. **Decision Theory**: Applies Bayes' rule for classification
-
-**Not Machine Learning because**:
-- Based on explicit statistical model (multivariate Gaussian)
-- Uses closed-form solution (no iterative optimization)
-- Provides interpretable results (discriminant direction has meaning)
-- Focuses on statistical inference, not prediction accuracy
-
-This makes LDA **perfect for a probability and statistics course**! 📊🎓
 
 ---
 

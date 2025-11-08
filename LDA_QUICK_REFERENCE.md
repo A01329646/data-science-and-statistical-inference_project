@@ -206,34 +206,3 @@ If LD1 ≥ -0.35 → Female
 | `stats.ttest_ind()` | t = (x̄₁ - x̄₂) / SE |
 | `threshold = (m1 + m2)/2` | Bayes optimal decision |
 | `accuracy` | θ̂ = correct / total |
-
----
-
-## 🎓 For Your Report - Checklist
-
-- [ ] Explain Fisher's discriminant criterion
-- [ ] Show S_B and S_W formulas
-- [ ] Report t-test results (t-statistic, p-value)
-- [ ] Include distribution plots
-- [ ] Calculate and report confidence intervals
-- [ ] Discuss assumption violations (if any)
-- [ ] Compare train vs validation accuracy
-- [ ] Interpret what results mean statistically
-- [ ] Discuss limitations and future work
-
----
-
-## 📖 Key Terms to Define
-
-- **Fisher's Linear Discriminant**: Linear combination maximizing class separation
-- **Between-class variance**: Variability of class means
-- **Within-class variance**: Variability within each class
-- **Discriminant score**: Projection of data onto discriminant axis
-- **p-value**: Probability of observing results if H₀ is true
-- **Type I error**: False positive (α = 0.05)
-- **Type II error**: False negative (power = 1 - β)
-- **Effect size**: Magnitude of difference (Cohen's d)
-
----
-
-**Remember**: LDA is a statistical method, not ML! Focus on probability theory and inference. 📊

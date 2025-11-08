@@ -18,7 +18,7 @@
 
 ---
 
-## Why LDA is Better for Your Project
+## Why LDA is Better for Classifying Genders
 
 1. **Statistical Foundation**: LDA is based on Fisher's Linear Discriminant, a classical statistical method
 2. **Class Separation**: Explicitly maximizes the distance between class means while minimizing within-class variance
@@ -61,46 +61,6 @@ Creates 3 plots showing:
 
 ---
 
-## Statistical Concepts Used (Good for Your Report)
-
-1. **Fisher's Linear Discriminant**: 
-   - Ratio of between-class variance to within-class variance
-   - Maximizes this ratio to find best separation
-
-2. **Two-sample t-test**:
-   - Tests null hypothesis: male mean = female mean
-   - Low p-value → reject null → classes are different
-
-3. **Decision Boundary**:
-   - Optimal threshold based on Bayes' rule
-   - Minimizes misclassification error
-
-4. **Confusion Matrix**:
-   - True positives, false positives, etc.
-   - Shows which gender is easier to classify
-
----
-
-## How to Run
-
-```powershell
-# Activate virtual environment
-.\venv\Scripts\Activate.ps1
-
-# Install dependencies (if not done)
-pip install -r requirements.txt
-
-# Run the LDA analysis
-python lda_gender_classification.py
-```
-
-Or directly with venv:
-```powershell
-.\venv\Scripts\python.exe lda_gender_classification.py
-```
-
----
-
 ## What to Expect
 
 ### If LDA Works Well (Good Separation):
@@ -114,65 +74,3 @@ Or directly with venv:
 - Accuracy ≈ 50% (random guessing)
 - Large overlap in distribution plots
 - This means: gender cannot be reliably predicted from image pixels alone
-
----
-
-## For Your Project Report
-
-### Introduction
-- Explain the difference between PCA (unsupervised) and LDA (supervised)
-- Mention Fisher's Linear Discriminant as the statistical foundation
-
-### Methodology
-- Describe how LDA maximizes between-class variance / within-class variance
-- Explain the decision threshold calculation
-- Include the t-test for statistical significance
-
-### Results
-- Show the distribution plots
-- Report p-value and accuracy
-- Discuss whether gender classification is statistically feasible
-
-### Conclusion
-- Evaluate if facial images contain enough gender information
-- Discuss limitations (lighting, angle, image quality)
-- Mention that this is a statistical approach, not deep learning
-
----
-
-## Additional Analysis Ideas
-
-1. **Vary sample size**: How does accuracy change with fewer training samples?
-2. **Feature importance**: Which pixels contribute most to LD1?
-3. **Confidence intervals**: Calculate 95% CI for accuracy
-4. **ROC curve**: Plot true positive rate vs false positive rate
-5. **Effect size**: Calculate Cohen's d for mean difference
-
----
-
-## Troubleshooting
-
-### If you get poor results:
-1. **Check image quality**: Are faces clearly visible and aligned?
-2. **Check labels**: Are filenames correctly labeled as "male_*" and "female_*"?
-3. **Try more samples**: More data → more reliable statistics
-4. **Consider preprocessing**: Face alignment, cropping might help
-
-### If LDA shows no separation:
-This is actually a valid finding! It means:
-- Gender classification from raw pixels is difficult
-- Would need better features (face landmarks, etc.)
-- Makes for an interesting discussion in your report
-
----
-
-## Key Advantages of This Approach
-
-✅ **Statistical**: Based on classical statistics, not ML black-box  
-✅ **Interpretable**: Every step has clear statistical meaning  
-✅ **Rigorous**: Includes hypothesis testing (t-test)  
-✅ **Visual**: Clear plots showing separation (or lack thereof)  
-✅ **Academic**: Perfect for probability & statistics class  
-✅ **Reproducible**: Saves model and generates detailed report  
-
-Good luck with your project! 🎓
