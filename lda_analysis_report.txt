@@ -1,0 +1,28 @@
+============================================================
+LDA GENDER CLASSIFICATION REPORT
+============================================================
+
+Training Set Size: 1000 samples
+  - Male: 500
+  - Female: 500
+
+Validation Set Size: 500 samples
+  - Male: 250
+  - Female: 250
+
+LDA Statistics:
+  - Components: 1
+  - Explained variance: 1.0000
+  - Decision threshold: -0.0000
+
+Training Set LD1 Scores:
+  - Male mean: -2.0508 (std: 0.9147)
+  - Female mean: 2.0508 (std: 1.0767)
+  - t-statistic: -64.8518
+  - p-value: 0.000000
+
+Classification Results:
+  - Training accuracy: 96.90%
+  - Validation accuracy: 84.20%
+  - Male classification rate (val): 84.80%
+  - Female classification rate (val): 83.60%
