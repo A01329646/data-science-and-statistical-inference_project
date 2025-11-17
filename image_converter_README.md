@@ -390,6 +390,6 @@ This script is the **first step** in the analysis pipeline:
 1. **image_converter.py** ← You are here (data preparation)
 2. pca_dataset.py (unsupervised dimensionality reduction)
 3. lda_dataset.py (supervised classification)
-4. run_regression_analysis.py (statistical modeling)
+4. regression_analysis.py (statistical modeling)
 
 **Prepared images are used as input for PCA and LDA analyses.**

@@ -132,8 +132,9 @@ plt.xlabel("Fitted Values (Predicted LD1 Score)")
 plt.ylabel("Residuals")
 plt.title("Residual Plot")
 plt.grid(True, alpha=0.3)
-plt.savefig("regression_residual_plot.png", dpi=300, bbox_inches='tight')
-print("✓ Residual plot saved to: regression_residual_plot.png")
+os.makedirs("outputs/regression", exist_ok=True)
+plt.savefig("outputs/regression/regression_residual_plot.png", dpi=300, bbox_inches='tight')
+print("✓ Residual plot saved to: outputs/regression/regression_residual_plot.png")
 
 
 # =======================================================

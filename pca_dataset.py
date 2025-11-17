@@ -100,6 +100,7 @@ plot_pca_projection(X_val_pca, y_val, "Validation Set: PCA Projection by Gender"
 # ------------------------------
 # 8. Save PCA model and scaler
 # ------------------------------
+os.makedirs("outputs/pca", exist_ok=True)
 os.makedirs("models", exist_ok=True)
 joblib.dump({"scaler": scaler, "pca": pca}, "models/pca_model.pkl")
 print("✅ PCA model and scaler saved to models/pca_model.pkl")

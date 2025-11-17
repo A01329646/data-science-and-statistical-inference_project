@@ -435,7 +435,7 @@ If first 10 PCs explain 60% of variance:
 
 **Position in pipeline:**
 ```
-image_converter.py → PCA_dataset.py ← You are here → run_regression_analysis.py
+image_converter.py → pca_dataset.py ← You are here → regression_analysis.py
                             ↓
                      lda_dataset.py
 ```
@@ -447,7 +447,7 @@ image_converter.py → PCA_dataset.py ← You are here → run_regression_analys
 - PC scores as predictors in regression
 
 **Output used by:**
-- `run_regression_analysis.py` - PC scores as independent variables (X)
+- `regression_analysis.py` - PC scores as independent variables (X)
 - Visualization and interpretation
 
 ---

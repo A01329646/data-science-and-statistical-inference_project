@@ -320,8 +320,8 @@ plt.xlabel("Fitted Values (Predicted LD1 Score)")
 plt.ylabel("Residuals")
 plt.title("Residual Plot")
 plt.grid(True, alpha=0.3)
-plt.savefig("regression_residual_plot.png", dpi=300, bbox_inches='tight')
-print("✓ Residual plot saved to: regression_residual_plot.png")
+plt.savefig("outputs/regression/regression_residual_plot.png", dpi=300, bbox_inches='tight')
+print("✓ Residual plot saved to: outputs/regression/regression_residual_plot.png")
 ```
 
 **Line 123:** `results.predict(X_reg_with_const)`
@@ -549,7 +549,7 @@ CI = (mean_diff - t*×SE, mean_diff + t*×SE)
 
 **Position in pipeline:**
 ```
-image_converter.py → pca_dataset.py → lda_dataset.py → run_regression_analysis.py ← You are here
+image_converter.py → pca_dataset.py → lda_dataset.py → regression_analysis.py ← You are here
 ```
 
 **Inputs:**
@@ -613,7 +613,7 @@ PC2            0.6231      0.028     22.254      0.000       0.568       0.678
 ============================================================
 GENERATING RESIDUAL PLOT...
 ============================================================
-✓ Residual plot saved to: regression_residual_plot.png
+✓ Residual plot saved to: outputs/regression/regression_residual_plot.png
 
 ============================================================
 SECTION 5.2: CONFIDENCE INTERVAL (MEAN DIFFERENCE)
@@ -630,7 +630,7 @@ REGRESSION ANALYSIS COMPLETE.
 ```
 
 **Generated files:**
-- `regression_residual_plot.png` - Residual diagnostic plot
+- `outputs/regression/regression_residual_plot.png` - Residual diagnostic plot
 
 ---
 

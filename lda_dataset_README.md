@@ -582,7 +582,7 @@ print("✓ LDA model and statistics saved to models/lda_model.pkl")
 #### Text Report Generation (Lines 313-338)
 
 ```python
-with open("lda_analysis_report.txt", "w") as f:
+with open("outputs/lda/lda_analysis_report.txt", "w") as f:
     f.write("=" * 60 + "\n")
     f.write("LDA GENDER CLASSIFICATION REPORT\n")
     f.write("=" * 60 + "\n\n")
@@ -653,7 +653,7 @@ with open("lda_analysis_report.txt", "w") as f:
 ```
 image_converter.py → pca_dataset.py → lda_dataset.py ← You are here
                                             ↓
-                                 run_regression_analysis.py
+                                 regression_analysis.py
 ```
 
 **LDA provides:**
@@ -663,7 +663,7 @@ image_converter.py → pca_dataset.py → lda_dataset.py ← You are here
 - **Baseline classifier:** Performance benchmark
 
 **Output used by:**
-- `run_regression_analysis.py` - LD1 as response variable
+- `regression_analysis.py` - LD1 as response variable
 - Model comparison with PCA
 
 ---
@@ -707,8 +707,8 @@ Validation Set Accuracy: 79.60%
 ```
 
 **Generated files:**
-1. `lda_gender_distribution.png` - Distribution histograms
-2. `lda_boxplot_comparison.png` - Box plot comparison
-3. `lda_classification_results.png` - Scatter with misclassifications
-4. `lda_analysis_report.txt` - Text summary
+1. `outputs/lda/lda_gender_distribution.png` - Distribution histograms
+2. `outputs/lda/lda_boxplot_comparison.png` - Box plot comparison
+3. `outputs/lda/lda_classification_results.png` - Scatter with misclassifications
+4. `outputs/lda/lda_analysis_report.txt` - Text summary
 5. `models/lda_model.pkl` - Saved model

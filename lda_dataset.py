@@ -218,8 +218,9 @@ plt.legend()
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('lda_gender_distribution.png', dpi=300, bbox_inches='tight')
-print("✓ Saved distribution plot: lda_gender_distribution.png")
+os.makedirs("outputs/lda", exist_ok=True)
+plt.savefig('outputs/lda/lda_gender_distribution.png', dpi=300, bbox_inches='tight')
+print("✓ Saved distribution plot: outputs/lda/lda_gender_distribution.png")
 
 # Plot 3: Box plot comparison
 plt.figure(figsize=(10, 6))
@@ -237,8 +238,8 @@ plt.axhline(threshold, color='green', linestyle='--', linewidth=2, label=f'Thres
 plt.legend()
 plt.grid(True, alpha=0.3, axis='y')
 plt.tight_layout()
-plt.savefig('lda_boxplot_comparison.png', dpi=300, bbox_inches='tight')
-print("✓ Saved boxplot: lda_boxplot_comparison.png")
+plt.savefig('outputs/lda/lda_boxplot_comparison.png', dpi=300, bbox_inches='tight')
+print("✓ Saved boxplot: outputs/lda/lda_boxplot_comparison.png")
 
 # Plot 4: Scatter plot with misclassifications highlighted
 plt.figure(figsize=(12, 5))
@@ -284,8 +285,8 @@ plt.legend()
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('lda_classification_results.png', dpi=300, bbox_inches='tight')
-print("✓ Saved classification results: lda_classification_results.png")
+plt.savefig('outputs/lda/lda_classification_results.png', dpi=300, bbox_inches='tight')
+print("✓ Saved classification results: outputs/lda/lda_classification_results.png")
 
 # ------------------------------
 # 10. Save LDA model and statistics
@@ -309,7 +310,7 @@ joblib.dump(model_data, "models/lda_model.pkl")
 print("✓ LDA model and statistics saved to models/lda_model.pkl")
 
 # Save detailed report
-with open("lda_analysis_report.txt", "w") as f:
+with open("outputs/lda/lda_analysis_report.txt", "w") as f:
     f.write("=" * 60 + "\n")
     f.write("LDA GENDER CLASSIFICATION REPORT\n")
     f.write("=" * 60 + "\n\n")
@@ -334,7 +335,7 @@ with open("lda_analysis_report.txt", "w") as f:
     f.write(f"  - Male classification rate (val): {val_male_correct/val_male_total:.2%}\n")
     f.write(f"  - Female classification rate (val): {val_female_correct/val_female_total:.2%}\n")
 
-print("✓ Detailed report saved to lda_analysis_report.txt")
+print("✓ Detailed report saved to outputs/lda/lda_analysis_report.txt")
 
 print("\n" + "=" * 60)
 print("ANALYSIS COMPLETE!")
@@ -345,8 +346,8 @@ print(f"  • Training accuracy: {train_accuracy:.2%}")
 print(f"  • Validation accuracy: {val_accuracy:.2%}")
 print(f"  • This is a statistical approach using Fisher's Linear Discriminant")
 print("\nFiles generated:")
-print("  1. lda_gender_distribution.png")
-print("  2. lda_boxplot_comparison.png")
-print("  3. lda_classification_results.png")
-print("  4. lda_analysis_report.txt")
+print("  1. outputs/lda/lda_gender_distribution.png")
+print("  2. outputs/lda/lda_boxplot_comparison.png")
+print("  3. outputs/lda/lda_classification_results.png")
+print("  4. outputs/lda/lda_analysis_report.txt")
 print("  5. models/lda_model.pkl")

@@ -41,18 +41,28 @@ data-science-and-statistical-inference_project/
 │   ├── pca_model.pkl                 # PCA model + scaler
 │   └── lda_model.pkl                 # LDA model + statistics
 │
+├── outputs/                          # Analysis outputs (organized by script)
+│   ├── pca/                          # PCA visualizations (if any)
+│   ├── lda/                          # LDA analysis outputs
+│   │   ├── lda_gender_distribution.png
+│   │   ├── lda_boxplot_comparison.png
+│   │   ├── lda_classification_results.png
+│   │   └── lda_analysis_report.txt
+│   └── regression/                   # Regression analysis outputs
+│       └── regression_residual_plot.png
+│
 ├── image_converter.py                # Step 1: Image preprocessing
 ├── pca_dataset.py                    # Step 2: PCA analysis
 ├── lda_dataset.py                    # Step 3: LDA classification
-├── run_regression_analysis.py        # Step 4: Regression modeling
+├── regression_analysis.py            # Step 4: Regression modeling
 │
 ├── requirements.txt                  # Python dependencies
 │
 ├── README.md                         # This file (general overview)
-├── README_image_converter.md         # Detailed docs for image_converter.py
-├── README_pca_dataset.md             # Detailed docs for pca_dataset.py
-├── README_lda_dataset.md             # Detailed docs for lda_dataset.py
-└── README_regression_analysis.md     # Detailed docs for run_regression_analysis.py
+├── image_converter_README.md         # Detailed docs for image_converter.py
+├── pca_dataset_README.md             # Detailed docs for pca_dataset.py
+├── lda_dataset_README.md             # Detailed docs for lda_dataset.py
+└── regression_analysis_README.md     # Detailed docs for regression_analysis.py
 ```
 
 ---
@@ -85,7 +95,7 @@ The project follows a sequential pipeline. Each script must be run in order:
                     │
                     ▼
      ┌──────────────────────────────┐
-     │ 4. run_regression_analysis.py│
+     │ 4. regression_analysis.py    │
      │  PC scores → LD1 scores      │
      │  OLS Regression + CI         │
      └──────────────────────────────┘
@@ -101,7 +111,7 @@ The project follows a sequential pipeline. Each script must be run in order:
 
 **Output:** Preprocessed images ready for analysis
 
-**See:** `README_image_converter.md` for detailed documentation
+**See:** `image_converter_README.md` for detailed documentation
 
 ---
 
@@ -122,7 +132,7 @@ The project follows a sequential pipeline. Each script must be run in order:
 - `models/pca_model.pkl` - Saved PCA model
 - Scatter plots of PC1 vs PC2
 
-**See:** `README_pca_dataset.md` for detailed documentation
+**See:** `pca_dataset_README.md` for detailed documentation
 
 ---
 
@@ -144,10 +154,10 @@ The project follows a sequential pipeline. Each script must be run in order:
 
 **Output:**
 - `models/lda_model.pkl` - Saved LDA model + statistics
-- `lda_analysis_report.txt` - Detailed statistical report
-- `lda_gender_distribution.png` - Distribution histograms
-- `lda_boxplot_comparison.png` - Box plot comparison
-- `lda_classification_results.png` - Misclassification plot
+- `outputs/lda/lda_analysis_report.txt` - Detailed statistical report
+- `outputs/lda/lda_gender_distribution.png` - Distribution histograms
+- `outputs/lda/lda_boxplot_comparison.png` - Box plot comparison
+- `outputs/lda/lda_classification_results.png` - Misclassification plot
 
 **Key Statistics:**
 - LD1 score means and standard deviations
@@ -155,11 +165,11 @@ The project follows a sequential pipeline. Each script must be run in order:
 - Classification accuracy (train & validation)
 - Shapiro-Wilk normality test
 
-**See:** `README_lda_dataset.md` for detailed documentation
+**See:** `lda_dataset_README.md` for detailed documentation
 
 ---
 
-#### Step 4: Regression Analysis (`run_regression_analysis.py`)
+#### Step 4: Regression Analysis (`regression_analysis.py`)
 **Purpose:** Model relationship between PCA and LDA
 - Load pre-fitted PCA and LDA models
 - Generate PC scores (independent variables)
@@ -175,7 +185,7 @@ The project follows a sequential pipeline. Each script must be run in order:
 
 **Output:**
 - Comprehensive regression summary (R², coefficients, p-values)
-- `regression_residual_plot.png` - Residual diagnostics
+- `outputs/regression/regression_residual_plot.png` - Residual diagnostics
 - Confidence interval for gender difference
 
 **Key Statistics:**
@@ -184,7 +194,7 @@ The project follows a sequential pipeline. Each script must be run in order:
 - Individual coefficient p-values
 - 95% CI for (μ_male - μ_female)
 
-**See:** `README_regression_analysis.md` for detailed documentation
+**See:** `regression_analysis_README.md` for detailed documentation
 
 ---
 
@@ -297,7 +307,7 @@ python lda_dataset.py
 ### 5. Run Regression Analysis
 
 ```bash
-python run_regression_analysis.py
+python regression_analysis.py
 ```
 
 **What happens:**
@@ -479,7 +489,7 @@ Prob (F-statistic): 2.34e-285
 
 For line-by-line code explanations and statistical theory:
 
-- **📘 [Image Converter Documentation](README_image_converter.md)**
-- **📘 [PCA Analysis Documentation](README_pca_dataset.md)**
-- **📘 [LDA Classification Documentation](README_lda_dataset.md)**
-- **📘 [Regression Analysis Documentation](README_regression_analysis.md)**
+- **📘 [Image Converter Documentation](image_converter_README.md)**
+- **📘 [PCA Analysis Documentation](pca_dataset_README.md)**
+- **📘 [LDA Classification Documentation](lda_dataset_README.md)**
+- **📘 [Regression Analysis Documentation](regression_analysis_README.md)**
