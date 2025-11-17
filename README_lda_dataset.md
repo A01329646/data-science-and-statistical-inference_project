@@ -712,22 +712,3 @@ Validation Set Accuracy: 79.60%
 3. `lda_classification_results.png` - Scatter with misclassifications
 4. `lda_analysis_report.txt` - Text summary
 5. `models/lda_model.pkl` - Saved model
-
----
-
-## Common Questions
-
-**Q: Why only 1 component for binary classification?**
-A: Mathematical constraint. For C classes, LDA can extract at most C-1 discriminants. Binary → 1 discriminant.
-
-**Q: What if classes aren't normally distributed?**
-A: LDA often works well anyway (robust). QDA or non-parametric methods are alternatives.
-
-**Q: How to improve accuracy?**
-A: Better preprocessing, more training data, feature engineering, or non-linear methods (SVM, neural networks).
-
-**Q: What does p-value < 0.05 mean?**
-A: Strong evidence that male and female LD1 scores differ significantly. Validates LDA found real separation.
-
-**Q: Why different train vs validation accuracy?**
-A: Normal (generalization gap). Large gap suggests overfitting. Small gap suggests good generalization.

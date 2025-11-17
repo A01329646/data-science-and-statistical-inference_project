@@ -452,25 +452,6 @@ image_converter.py → PCA_dataset.py ← You are here → run_regression_analys
 
 ---
 
-## Common Questions
-
-**Q: Why 50 components specifically?**
-A: Empirical choice balancing dimensionality reduction and information retention. Typically explains 85-95% variance.
-
-**Q: Why standardize if images already normalized?**
-A: Normalization scales [0,255]→[0,1]. Standardization makes mean=0, std=1 across images. Different purposes.
-
-**Q: Can PCA classify gender?**
-A: No, PCA is unsupervised. But PC scores can be inputs to classifiers (like LDA or logistic regression).
-
-**Q: What do principal components represent?**
-A: Linear combinations of original pixels. PC1 might be "average face", PC2 might be "face shape", etc.
-
-**Q: Why not use all components?**
-A: Computational cost, overfitting risk, noise in later components.
-
----
-
 ## Expected Output
 
 **Console output:**
