@@ -77,7 +77,7 @@ print("STANDARDIZING DATA")
 print("=" * 60)
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
-X_val_scaled   = scaler.transform(X_val)  # use same mean/std from training
+X_val_scaled   = scaler.transform(X_val)
 print("✓ Data standardized using training set statistics")
 
 # ------------------------------
@@ -105,7 +105,7 @@ print(f"✓ Validation set transformed to LDA space")
 # 7. Statistical Analysis - Distribution Comparison
 # ------------------------------
 print("\n" + "=" * 60)
-print("STATISTICAL ANALYSIS")
+print("STATISTICAL ANALYSIS (SECTION 5)")
 print("=" * 60)
 
 # Training set statistics
@@ -115,9 +115,8 @@ train_female_scores = X_train_lda[y_train == 1, 0]
 print(f"\nTraining Set - LD1 Score Statistics:")
 print(f"  Male:   mean={train_male_scores.mean():.4f}, std={train_male_scores.std():.4f}")
 print(f"  Female: mean={train_female_scores.mean():.4f}, std={train_female_scores.std():.4f}")
-print(f"  Separation: {abs(train_male_scores.mean() - train_female_scores.mean()):.4f} standard deviations")
+print(f"  Separation: {abs(train_male_scores.mean() - train_female_scores.mean()):.4f} units")
 
-# Perform t-test to check if means are significantly different
 t_stat, p_value = stats.ttest_ind(train_male_scores, train_female_scores)
 print(f"\n  Two-sample t-test:")
 print(f"    t-statistic: {t_stat:.4f}")
@@ -136,6 +135,26 @@ print(f"  Male:   mean={val_male_scores.mean():.4f}, std={val_male_scores.std():
 print(f"  Female: mean={val_female_scores.mean():.4f}, std={val_female_scores.std():.4f}")
 
 # ------------------------------
+# Goodness-of-fit test (Shapiro-Wilk)
+# ------------------------------
+print("\n" + "=" * 60)
+print("SECTION 4.2: GOODNESS-OF-FIT TEST")
+print("=" * 60)
+print("Testing if train_male_scores are normally distributed...")
+
+shapiro_stat, shapiro_p = stats.shapiro(train_male_scores)
+
+print(f"  Shapiro-Wilk Statistic: {shapiro_stat:.4f}")
+print(f"  p-value: {shapiro_p:.6f}")
+
+alpha = 0.05
+if shapiro_p > alpha:
+    print(f"  Conclusion (p > {alpha}): Fail to reject H0. Data appears to be normally distributed.")
+else:
+    print(f"  Conclusion (p <= {alpha}): Reject H0. Data does not appear to be normally distributed.")
+
+
+# ------------------------------
 # 8. Simple Classification using Fisher's threshold
 # ------------------------------
 print("\n" + "=" * 60)
@@ -145,7 +164,7 @@ print("=" * 60)
 # Calculate optimal threshold (midpoint between means)
 threshold = (train_male_scores.mean() + train_female_scores.mean()) / 2
 print(f"Decision threshold: {threshold:.4f}")
-print(f"  Rule: If LD1 score < {threshold:.4f} → Male, else → Female")
+print(f"  Rule: If LD1 score < {threshold:.4f} → Male (0), else → Female (1)")
 
 # Classify training set
 train_predictions = (X_train_lda[:, 0] >= threshold).astype(int)
@@ -201,7 +220,6 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig('lda_gender_distribution.png', dpi=300, bbox_inches='tight')
 print("✓ Saved distribution plot: lda_gender_distribution.png")
-plt.show()
 
 # Plot 3: Box plot comparison
 plt.figure(figsize=(10, 6))
@@ -221,7 +239,6 @@ plt.grid(True, alpha=0.3, axis='y')
 plt.tight_layout()
 plt.savefig('lda_boxplot_comparison.png', dpi=300, bbox_inches='tight')
 print("✓ Saved boxplot: lda_boxplot_comparison.png")
-plt.show()
 
 # Plot 4: Scatter plot with misclassifications highlighted
 plt.figure(figsize=(12, 5))
@@ -269,7 +286,6 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig('lda_classification_results.png', dpi=300, bbox_inches='tight')
 print("✓ Saved classification results: lda_classification_results.png")
-plt.show()
 
 # ------------------------------
 # 10. Save LDA model and statistics

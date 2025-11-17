@@ -56,7 +56,7 @@ print(f"Validation set shape: {X_val.shape}")
 # ------------------------------
 # 4. Standardize the data (important before PCA)
 # ------------------------------
-scaler = StandardScaler()  # with_std=True is default in newer versions
+scaler = StandardScaler(with_std=True)
 X_train_scaled = scaler.fit_transform(X_train)
 X_val_scaled   = scaler.transform(X_val)  # use same mean/std
 
@@ -91,33 +91,11 @@ def plot_pca_projection(X_pca, y_labels, title):
     plt.tight_layout()
     plt.show()
 
+print("Plotting PCA projection for training set...")
+plot_pca_projection(X_train_pca, y_train, "Training Set: PCA Projection by Gender")
 
-
-# print("Plotting PCA projection for training set...")
-# plot_pca_projection(X_train_pca, y_train, "Training Set: PCA Projection by Gender")
-
-# print("Plotting PCA projection for validation set...")
-# plot_pca_projection(X_val_pca, y_val, "Validation Set: PCA Projection by Gender")
-
-
-# Convert labels to a boolean mask for convenience
-male_mask = (y_train == 'male')
-female_mask = (y_train == 'female')
-
-n_components_to_plot = 50  # you can increase if you want
-
-# Plot each component in a separate figure
-for i in range(n_components_to_plot):
-    plt.figure(figsize=(10, 6))
-    plt.hist(X_train_pca[male_mask, i], bins=50, alpha=0.6, label='Male', color='blue', density=True)
-    plt.hist(X_train_pca[female_mask, i], bins=50, alpha=0.6, label='Female', color='red', density=True)
-    plt.title(f'Distribution of PC{i+1} by Gender')
-    plt.xlabel(f'PC{i+1} score')
-    plt.ylabel('Density')
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
-    print(f"Displayed PC{i+1} plot")
+print("Plotting PCA projection for validation set...")
+plot_pca_projection(X_val_pca, y_val, "Validation Set: PCA Projection by Gender")
 
 # ------------------------------
 # 8. Save PCA model and scaler
