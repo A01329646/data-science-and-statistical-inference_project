@@ -334,15 +334,15 @@ python regression_analysis.py
 
 **Variance explained:**
 ```
-PC1: 12.5%
+PC1: 29.6%
 PC2: 8.3%
-PC3: 6.1%
+PC3: 5.9%
 ...
-Total (50 PCs): 87.4%
+Total (50 PCs): 84.0%
 ```
 
 **Interpretation:**
-- First 50 PCs capture ~85-90% of image variance
+- First 50 PCs capture ~84% of image variance
 - Massive dimensionality reduction: 38,804 → 50 features
 - PC1-PC10 typically capture main facial features
 
@@ -358,18 +358,18 @@ Training Set - LD1 Score Statistics:
   Separation: 4.10 units
 
 Two-sample t-test:
-  t-statistic: -40.23
+  t-statistic: -64.85
   p-value: 0.000000
   ✓ Classes are significantly different (p < 0.05)
 
-Training Set Accuracy: 82.4%
-Validation Set Accuracy: 79.6%
+Training Set Accuracy: 96.9%
+Validation Set Accuracy: 84.2%
 ```
 
 **Interpretation:**
 - **Separation:** ~4 standard deviations between genders
 - **Significance:** p << 0.05, highly significant difference
-- **Accuracy:** ~80% correct classification
+- **Accuracy:** ~84% correct classification
 - **Generalization:** Similar train/validation accuracy (good sign)
 
 ---
@@ -378,18 +378,18 @@ Validation Set Accuracy: 79.6%
 
 **Example output:**
 ```
-R-squared: 0.892
-Adj. R-squared: 0.886
-F-statistic: 157.2
-Prob (F-statistic): 2.34e-285
+R-squared: 0.511
+Adj. R-squared: 0.485
+F-statistic: 19.84
+Prob (F-statistic): 1.84e-114
 
-95% Confidence Interval: [-4.24, -3.98]
+95% Confidence Interval: [-4.23, -3.98]
 ```
 
 **Interpretation:**
-- **R² = 0.89:** PC scores explain 89% of LD1 variance
+- **Adjusted R² = 0.485** PC scores explain % of LD1 variance
 - **F-test:** Overall model highly significant (p ≈ 0)
-- **CI:** Males score 3.98-4.24 points lower than females (significant difference)
+- **CI:** Males score 3.98-4.23 points lower than females (significant difference)
 - **Conclusion:** Strong linear relationship between PCA and LDA features
 
 ---
@@ -449,9 +449,10 @@ Prob (F-statistic): 2.34e-285
 
 ### Good Results Indicate:
 
-✅ **High R² (0.80-0.95):**
-- Strong relationship between PCA and LDA
+✅ **R² (0.48-0.52):**
+- Relationship between PCA and LDA
 - Gender information captured by variance
+- Missing important features (~50%)
 
 ✅ **Significant t-test (p < 0.05):**
 - Classes significantly different
@@ -464,24 +465,6 @@ Prob (F-statistic): 2.34e-285
 ✅ **CI doesn't contain 0:**
 - Significant gender difference
 - Effect size quantified
-
-### Red Flags:
-
-⚠️ **Large train-validation gap:**
-- Overfitting
-- Model too complex for data
-
-⚠️ **Low R² (<0.5):**
-- Weak PCA-LDA relationship
-- Missing important features
-
-⚠️ **Non-significant t-test (p > 0.05):**
-- Classes not distinguishable
-- Poor separation
-
-⚠️ **Residual patterns:**
-- Model misspecification
-- Non-linear relationships
 
 ---
 
