@@ -50,6 +50,7 @@ data-science-and-statistical-inference_project/
 │   │   └── lda_analysis_report.txt
 │   └── regression/                   # Regression analysis outputs
 │       └── regression_residual_plot.png
+│       └── regression_analysis_report.txt
 │
 ├── image_converter.py                # Step 1: Image preprocessing
 ├── pca_dataset.py                    # Step 2: PCA analysis
